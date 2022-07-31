@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Create from './pages/create'
 import Edit from './pages/edit'
-import Home from './pages/home'
+import Home from './pages/Home/home'
 import { QueryClientProvider } from '@tanstack/react-query'
 import queryClient from '../lib/client'
 import AuthProvider from '../contexts/auth'

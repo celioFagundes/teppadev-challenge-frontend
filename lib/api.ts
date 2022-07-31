@@ -16,3 +16,6 @@ export const fetchMedias = async () => {
   const data = await response.json()
   return data
 }
+export const Register = async() =>{
+  
+}
