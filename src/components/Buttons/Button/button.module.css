@@ -1,0 +1,28 @@
+.button{
+    height: 34px;
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 8px;
+    border: 1px solid #fff;
+    color: hsl(229, 25%, 31%);
+    background-color: #fff;
+    text-align: center;
+    
+    font-weight: bold;
+    transition: all 140ms ease-in-out;
+    
+}
+.button.outline{
+    background-color: transparent;
+    color: #E3E7D3;
+}
+.button:hover:not(.disabled){
+    color: hsl(229, 25%, 31%);
+    background-color: #fff;
+    cursor: pointer;
+}
+.button.disabled{
+    background-color: transparent;
+    border-color: hsl(229, 25%, 31%);
+    color: hsl(229, 25%, 31%);
+}

@@ -1,0 +1,20 @@
+.label{
+    font-weight: bold;
+}
+.input {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  outline: none;
+}
+.input::placeholder{
+    color: rgba(255,255,255,0.6);
+}
+.error_message {
+  color: #fbc260;
+  font-size: 0.8rem;
+  font-style: italic;
+}

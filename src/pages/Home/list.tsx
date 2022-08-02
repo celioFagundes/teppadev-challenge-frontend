@@ -1,23 +1,23 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchMedias } from '../../../lib/api'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-interface IAdditionalInfo {
-  name: string
-  value: string
-}
-interface IMedia {
-  id: string
-  name: string
-  gender: string
-  status: string
-  additional: IAdditionalInfo[]
-}
-
+import { IMedia } from '../../../types/types'
+import { Card } from '../../components/Cards/index'
+import { deleteData, fetchData } from '../../lib/api'
+import styles from './home.module.css'
 interface Error {
   message?: string
 }
 function List() {
-  const { isLoading, isError, data, error } = useQuery<IMedia[], Error>(['medias'], fetchMedias)
+  const queryClient = useQueryClient()
+  const { isLoading, isError, data, error } = useQuery<IMedia[], Error>(['medias'], () =>
+    fetchData('/medias')
+  )
+  const deleteMutation = useMutation((id: string) => deleteData(`/medias/${id}`), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['medias'])
+    },
+  })
+
   if (isLoading) {
     return <span>Loading...</span>
   }
@@ -30,11 +30,20 @@ function List() {
     )
   }
   return (
-    <div>
+    <div className={styles.list}>
+      {data.length === 0 && <h1>No items found</h1>}
       {data.map(item => (
-        <div key={item.id}>
-          <p>{item.name}</p>
-        </div>
+        <Card
+          key={item.id}
+          id={item.id}
+          name={item.name}
+          media_type={item.media_type}
+          genre={item.genre}
+          additional={item.additional}
+          status={item.status}
+          deleteFn={() => deleteMutation.mutate(item.id)}
+          url = {`/edit/${item.id}`}
+        />
       ))}
     </div>
   )

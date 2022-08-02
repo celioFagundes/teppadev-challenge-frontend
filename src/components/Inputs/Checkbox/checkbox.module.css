@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.label {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-color: #fff;
+  margin-right: 15px;
+}
+.label.checked{
+    background-color: #db8d06;
+}
+.checkbox {
+  display: none;
+}
+.text {
+  font-weight: bold;
+}

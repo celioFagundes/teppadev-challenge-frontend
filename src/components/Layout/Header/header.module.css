@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 30px;
+  
+}
+.title{
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+.button{
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #E3E7D3;
+    font-weight: bold;
+    cursor: pointer; 
+    transition: all 140ms ease-in-out;
+}
+.button:hover{
+    color: hsl(229, 25%, 31%);
+    background-color: #fff;
+}

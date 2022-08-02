@@ -1,9 +1,10 @@
 import { useContext } from 'react'
-import { AuthContext } from '../../../contexts/auth'
-import { Navigate } from 'react-router-dom'
-import Layout from '../../../components/Layout/layout'
-import List from './list'
 
+import { Link, Navigate } from 'react-router-dom'
+import Layout from '../../components/Layout/layout'
+import List from './list'
+import styles from './home.module.css'
+import { AuthContext } from '../../contexts/auth'
 function Home() {
   const auth = useContext(AuthContext)
   if (auth && auth.loading && auth.user === null) {
@@ -11,7 +12,13 @@ function Home() {
   }
   return (
     <Layout>
-      <List />
+      <div className={styles.home}>
+        <Link to={'/create'} className={styles.create_button}>
+          Add new
+        </Link>
+
+        <List />
+      </div>
     </Layout>
   )
 }

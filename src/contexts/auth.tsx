@@ -75,9 +75,7 @@ const useGetUser = (): [User | null, boolean] => {
 }
 
 const userSignOut = () => {
-  signOut(auth).then(() => {
-    window.location.reload()
-  })
+  signOut(auth)
 }
 
 interface ProviderProps {

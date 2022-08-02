@@ -1,8 +1,9 @@
 import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import { AuthContext } from '../../../contexts/auth'
+
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { AuthContext } from '../../contexts/auth'
 
 const RegistrationSchema = Yup.object().shape({
   email: Yup.string().email(),
