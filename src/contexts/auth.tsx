@@ -8,12 +8,16 @@ import {
   User,
 } from 'firebase/auth'
 
+interface IResponseStatus {
+  success: boolean | null
+  message: string
+}
 interface IAuthContext {
   user: User | null
   loading: boolean
   userSignOut: () => void
   userSignIn: {
-    signInStatus: { success: boolean | null; message: string }
+    signInStatus: IResponseStatus
     signIn: (email: string, password: string) => void
   }
 }
@@ -21,21 +25,19 @@ export const AuthContext = createContext<IAuthContext | null>(null)
 
 const auth = getAuth(firebase)
 
-const useSignInUser = (): [
-  { success: boolean | null; message: string },
-  (email: string, password: string) => void
-] => {
-  const [status, setStatus] = useState<{ success: boolean | null; message: string }>({
+const useSignInUser = (): [IResponseStatus, (email: string, password: string) => void] => {
+  const [status, setStatus] = useState<IResponseStatus>({
     success: null,
     message: '',
   })
   const signIn = (email: string, password: string) => {
+    console.log('chamou aqui')
     signInWithEmailAndPassword(auth, email, password)
       .then(() => setStatus({ success: true, message: 'Success' }))
       .catch(err => {
         if (err.code === 'auth/wrong-password') {
           setStatus({ success: false, message: 'Invalid credentials' })
-        }else{
+        } else {
           setStatus({ success: false, message: 'Could not sign in' })
         }
       })

@@ -21,7 +21,6 @@ function SignIn() {
     },
     validationSchema: SignInSchema,
     onSubmit: async values => {
-      console.log('chamou')
       auth && auth.userSignIn.signIn(values.email, values.password)
     },
   })
