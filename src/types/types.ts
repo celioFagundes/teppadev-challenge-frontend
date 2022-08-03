@@ -17,3 +17,11 @@ export interface IMediaInput {
   status: string
   additional: IAdditionalInfo[]
 }
+
+export interface IRegistration{
+  email: string
+  password: string
+}
+export interface IError {
+  message?: string
+}

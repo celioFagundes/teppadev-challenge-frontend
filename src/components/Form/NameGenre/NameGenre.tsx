@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
-
 import { FormContext, IFormContext } from '../../../contexts/formContext'
 import { Button } from '../../Buttons'
 import { Input } from '../../Inputs'
-
 import styles from './name_genre.module.css'
 
 function NameGenre() {

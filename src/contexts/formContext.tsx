@@ -1,6 +1,6 @@
 import { FormikConfig, FormikContextType, FormikErrors, useFormik } from 'formik'
 import { ChangeEventHandler, createContext, FocusEventHandler, FormEvent, useState } from 'react'
-import { IAdditionalInfo, IMediaInput } from '../../types/types'
+import { IAdditionalInfo, IMediaInput } from '../types/types'
 import * as Yup from 'yup'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
 import { createData, updateData } from '../lib/api'
@@ -39,7 +39,6 @@ const FormProvider = ({ children }: ProviderProps) => {
   const [activeStepIndex, setActiveStepIndex] = useState(0)
   const navigate = useNavigate()
   const params = useParams()
-  console.log(params)
 
   const createMutation = useMutation((values: IMediaInput) => createData(`/medias/`, values), {
     onSuccess: () => navigate('/'),

@@ -1,0 +1,38 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+.content{
+    display: grid;
+    gap: 40px;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #fff;
+}
+.title{
+    text-align: center;
+}
+.form{
+    display: grid;
+    gap: 10px;
+}
+.error_message {
+    color: #fbc260;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+.success_message {
+    display: inline;
+    color: aquamarine;
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-right: 5px;
+  }
+.sign_in{
+    font-size: 0.8rem;
+    color: #fff;
+    text-align: center;
+}

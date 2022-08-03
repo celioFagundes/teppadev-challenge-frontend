@@ -1,16 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { IMedia } from '../../../types/types'
+import { IError, IMedia } from '../../types/types'
 import { Card } from '../../components/Cards/index'
 import { LoadingSpinner } from '../../components/LoadingSpinner/loadingSpinner'
 import { deleteData, fetchData } from '../../lib/api'
 import styles from './home.module.css'
-interface Error {
-  message?: string
-}
+
+
 function List() {
   const queryClient = useQueryClient()
-  const { isLoading, isError, data, error } = useQuery<IMedia[], Error>(['medias'], () =>
+  const { isLoading, isError, data, error } = useQuery<IMedia[], IError>(['medias'], () =>
     fetchData('/medias')
   )
   const deleteMutation = useMutation((id: string) => deleteData(`/medias/${id}`), {

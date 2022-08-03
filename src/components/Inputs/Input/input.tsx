@@ -2,6 +2,7 @@ import { ChangeEventHandler, FocusEventHandler } from 'react'
 import styles from './input.module.css'
 interface IInput {
   id: string
+  type?: string
   label: string
   name: string
   value: string
@@ -11,12 +12,13 @@ interface IInput {
   onBlur: FocusEventHandler<HTMLInputElement>
 }
 function Input(props: IInput) {
-  const { id, label, name, value, placeholder, errorMessage, onChange, onBlur } = props
+  const { id,type, label, name, value, placeholder, errorMessage, onChange, onBlur } = props
   return (
     <div>
       <label className={styles.label}>{label}</label>
       <input
         id={id}
+        type = {type || 'text'}
         name={name}
         value={value}
         placeholder={placeholder}

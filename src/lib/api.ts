@@ -1,5 +1,5 @@
 import { getAuth } from 'firebase/auth'
-import { IMediaInput } from '../../types/types'
+import { IMediaInput, IRegistration } from '../types/types'
 
 const API = 'http://localhost:3000'
 const endpoint = (path: string): string => API + path
@@ -73,5 +73,23 @@ export const deleteData = async (path: string) => {
     throw new Error('Error, delete data failed')
   }
   const data = await response.text()
+  return data
+}
+
+export const register = async (path: string, values: IRegistration) => {
+  const response = await fetch(endpoint(path), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(values),
+  })
+  if (!response.ok) {
+    if (response.status === 401) {
+      throw new Error('Unauthorized')
+    }
+    throw new Error('Erro, register failed')
+  }
+  const data = await response.json()
   return data
 }

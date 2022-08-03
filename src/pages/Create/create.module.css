@@ -53,15 +53,7 @@
   gap: 10px;
   margin: 10px 0;
 }
-.input {
-  width: 100%;
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: 1px solid white;
-  background-color: transparent;
-  color: #fff;
-  outline: none;
-}
+
 .error_message {
   color: #fbc260;
   font-size: 0.8rem;

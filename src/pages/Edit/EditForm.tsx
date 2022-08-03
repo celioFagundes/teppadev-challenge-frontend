@@ -6,7 +6,7 @@ import { MediaType, NameGenre, Additional, MediaStatus } from '../../components/
 import { useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { fetchData, updateData } from '../../lib/api'
-import { IMedia, IMediaInput } from '../../../types/types'
+import { IMedia, IMediaInput } from '../../types/types'
 
 const formSteps = [
   { step_id: 'media_type', step_title: 'Media Type' },

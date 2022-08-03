@@ -23,6 +23,9 @@
   font-size: 1.4rem;
   cursor: pointer;
 }
+.action:hover {
+  color: hsl(238, 51%, 57%);
+}
 .status {
   color: #fff;
   font-size: 1rem;
@@ -37,7 +40,7 @@
 
 .information {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   height: 100%;
   width: 100%;
   justify-content: center;

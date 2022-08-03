@@ -1,11 +1,8 @@
 import React, { MouseEventHandler } from 'react'
-import { IMedia } from '../../../../types/types'
-import styles from './card.module.css'
-import { FaGamepad } from 'react-icons/fa'
-import { BiMoviePlay, BiTv } from 'react-icons/bi'
-import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai'
-import { deleteData } from '../../../lib/api'
+import { IMedia } from '../../../types/types'
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import styles from './card.module.css'
 
 interface ICardProps extends IMedia {
   deleteFn: MouseEventHandler<HTMLButtonElement>
@@ -13,14 +10,14 @@ interface ICardProps extends IMedia {
 }
 
 function Card(props: ICardProps) {
-  const { id, name, genre, media_type, additional, status, deleteFn , url} = props
+  const { name, genre, additional, status, deleteFn, url } = props
 
   return (
     <div className={styles.wrapper}>
       <p className={`${styles.status} ${styles[status]}`}>{status}</p>
       <div className={styles.actions}>
-        <Link className={styles.action} to ={url}>
-          <AiOutlineEdit />
+        <Link className={styles.action} to={url}>
+          <AiFillEdit />
         </Link>
         <button onClick={deleteFn} className={styles.action}>
           <AiFillDelete />

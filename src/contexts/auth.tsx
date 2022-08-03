@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react'
 import firebase from '../lib/firebase'
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
@@ -14,44 +13,32 @@ interface IAuthContext {
   loading: boolean
   userSignOut: () => void
   userSignIn: {
-    signInStatus: {}
+    signInStatus: { success: boolean | null; message: string }
     signIn: (email: string, password: string) => void
-  }
-  createUser: {
-    createUserStatus: { success: string; error: string }
-    createUser: (email: string, password: string) => void
   }
 }
 export const AuthContext = createContext<IAuthContext | null>(null)
 
 const auth = getAuth(firebase)
 
-const useCreateUser = (): [
-  { success: string; error: string },
+const useSignInUser = (): [
+  { success: boolean | null; message: string },
   (email: string, password: string) => void
 ] => {
-  const [status, setStatus] = useState({ success: '', error: '' })
-
-  const createUser = (email: string, password: string) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        const user = userCredential.user
-        setStatus({ success: 'ok', error: '' })
-      })
-      .catch(err => {
-        setStatus({ success: '', error: err })
-      })
-  }
-  return [status, createUser]
-}
-
-const useSignInUser = (): [{}, (email: string, password: string) => void] => {
-  const [status, setStatus] = useState({})
-
+  const [status, setStatus] = useState<{ success: boolean | null; message: string }>({
+    success: null,
+    message: '',
+  })
   const signIn = (email: string, password: string) => {
-    signInWithEmailAndPassword(auth, email, password).catch(err => {
-      setStatus(err)
-    })
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => setStatus({ success: true, message: 'Success' }))
+      .catch(err => {
+        if (err.code === 'auth/wrong-password') {
+          setStatus({ success: false, message: 'Invalid credentials' })
+        }else{
+          setStatus({ success: false, message: 'Could not sign in' })
+        }
+      })
   }
   return [status, signIn]
 }
@@ -83,7 +70,6 @@ interface ProviderProps {
 }
 const AuthProvider = ({ children }: ProviderProps) => {
   const [user, loading] = useGetUser()
-  const [createUserStatus, createUser] = useCreateUser()
   const [signInStatus, signIn] = useSignInUser()
 
   return (
@@ -95,10 +81,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
         userSignIn: {
           signInStatus,
           signIn,
-        },
-        createUser: {
-          createUserStatus,
-          createUser,
         },
       }}
     >

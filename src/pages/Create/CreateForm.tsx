@@ -3,10 +3,6 @@ import styles from './create.module.css'
 import { LoadingSpinner } from '../../components/LoadingSpinner/loadingSpinner'
 import { FormContext, IFormContext } from '../../contexts/formContext'
 import { MediaType, NameGenre, Additional, MediaStatus } from '../../components/Form/'
-import { useMutation } from '@tanstack/react-query'
-import { createData } from '../../lib/api'
-import { useNavigate } from 'react-router-dom'
-import { IMediaInput } from '../../../types/types'
 
 const formSteps = [
   { step_id: 'media_type', step_title: 'Media Type' },

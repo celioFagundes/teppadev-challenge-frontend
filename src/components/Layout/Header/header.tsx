@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../contexts/auth'
 import styles from './header.module.css'
 

@@ -1,25 +1,11 @@
-import { useMutation } from '@tanstack/react-query'
-import { ErrorMessage, Field, Form, Formik, useFormikContext } from 'formik'
-import React, { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import * as Yup from 'yup'
-import { IMediaInput } from '../../../../types/types'
+import React, { useContext } from 'react'
 import { FormContext, IFormContext } from '../../../contexts/formContext'
-import { createData } from '../../../lib/api'
 import { Button } from '../../Buttons'
 import { CheckboxInput } from '../../Inputs'
-import { LoadingSpinner } from '../../LoadingSpinner/loadingSpinner'
 import styles from './media_status.module.css'
 
 function MediaStatus() {
-  const {
-    activeStepIndex,
-    setActiveStepIndex,
-    form,
-    createMutation,
-    handleNextStep,
-    handleNextStepIsDisable,
-  } = useContext(FormContext) as IFormContext
+  const { form, handleNextStep, handleNextStepIsDisable } = useContext(FormContext) as IFormContext
   const { values, errors } = form
 
   return (
@@ -54,7 +40,7 @@ function MediaStatus() {
         />
         {values.status === '' && <p className={styles.error_message}>{errors.status}</p>}
       </div>
-      
+
       <div className={styles.step_buttons}>
         <Button onClick={() => handleNextStep(2)} outline>
           Previous
