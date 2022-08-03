@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { IMedia } from '../../../types/types'
 import { Card } from '../../components/Cards/index'
+import { LoadingSpinner } from '../../components/LoadingSpinner/loadingSpinner'
 import { deleteData, fetchData } from '../../lib/api'
 import styles from './home.module.css'
 interface Error {
@@ -19,7 +20,7 @@ function List() {
   })
 
   if (isLoading) {
-    return <span>Loading...</span>
+    return <LoadingSpinner/>
   }
 
   if (isError) {

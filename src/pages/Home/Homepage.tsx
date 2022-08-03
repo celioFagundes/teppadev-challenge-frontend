@@ -2,9 +2,10 @@ import { useContext } from 'react'
 
 import { Link, Navigate } from 'react-router-dom'
 import Layout from '../../components/Layout/layout'
-import List from './list'
+import List from './List'
 import styles from './home.module.css'
 import { AuthContext } from '../../contexts/auth'
+
 function Home() {
   const auth = useContext(AuthContext)
   if (auth && auth.loading && auth.user === null) {
