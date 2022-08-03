@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-
 import { IError, IMedia } from '../../types/types'
 import { Card } from '../../components/Cards/index'
 import { LoadingSpinner } from '../../components/LoadingSpinner/loadingSpinner'

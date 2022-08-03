@@ -1,7 +1,7 @@
 import { getAuth } from 'firebase/auth'
 import { IMediaInput, IRegistration } from '../types/types'
 
-const API = 'http://localhost:3000'
+const API = 'https://teppadev-api.herokuapp.com'
 const endpoint = (path: string): string => API + path
 
 export const fetchData = async (path: string): Promise<any> => {

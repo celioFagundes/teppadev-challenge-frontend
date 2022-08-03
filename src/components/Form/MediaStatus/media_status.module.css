@@ -7,3 +7,8 @@
   gap: 15px;
   grid-template-columns: 1fr 1fr;
 }
+.error_message {
+  color: #fbc260;
+  font-size: 0.8rem;
+  font-style: italic;
+}

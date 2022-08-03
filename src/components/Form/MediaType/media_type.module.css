@@ -2,3 +2,8 @@
   display: grid;
   gap: 40px;
 }
+.error_message {
+  color: #fbc260;
+  font-size: 0.8rem;
+  font-style: italic;
+}

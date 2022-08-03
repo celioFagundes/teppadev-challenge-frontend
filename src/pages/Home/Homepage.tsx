@@ -8,6 +8,7 @@ import { AuthContext } from '../../contexts/auth'
 
 function Home() {
   const auth = useContext(AuthContext)
+
   if (auth && auth.loading && auth.user === null) {
     return <Navigate to='/signin' />
   }
@@ -17,7 +18,6 @@ function Home() {
         <Link to={'/create'} className={styles.create_button}>
           Add new
         </Link>
-
         <List />
       </div>
     </Layout>

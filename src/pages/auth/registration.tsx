@@ -8,10 +8,10 @@ import { useMutation } from '@tanstack/react-query'
 import { IRegistration } from '../../types/types'
 import { register } from '../../lib/api'
 import { Input } from '../../components/Inputs'
-
-import styles from './registration.module.css'
 import { Button } from '../../components/Buttons'
 import { LoadingSpinner } from '../../components/LoadingSpinner/loadingSpinner'
+import styles from './registration.module.css'
+
 
 const RegistrationSchema = Yup.object().shape({
   email: Yup.string().email().required('Please, enter your email'),

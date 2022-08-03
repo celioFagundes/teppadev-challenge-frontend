@@ -3,10 +3,10 @@ import styles from './edit.module.css'
 import { LoadingSpinner } from '../../components/LoadingSpinner/loadingSpinner'
 import { FormContext, IFormContext } from '../../contexts/formContext'
 import { MediaType, NameGenre, Additional, MediaStatus } from '../../components/Form/'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { fetchData, updateData } from '../../lib/api'
-import { IMedia, IMediaInput } from '../../types/types'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { fetchData } from '../../lib/api'
+import { IMedia } from '../../types/types'
 
 const formSteps = [
   { step_id: 'media_type', step_title: 'Media Type' },
@@ -17,7 +17,7 @@ const formSteps = [
 function EditForm() {
   const params = useParams()
   const { form, activeStepIndex, updateMutation } = useContext(FormContext) as IFormContext
-  const { isLoading, isError, data, error } = useQuery<IMedia, Error>(['media'], () =>
+  const { isLoading, data } = useQuery<IMedia, Error>(['media'], () =>
     fetchData(`/medias/${params.id}`)
   )
   useEffect(() => {
@@ -30,10 +30,11 @@ function EditForm() {
       form.validateForm(data)
     }
   }, [data])
-  if(isLoading){
-    return <LoadingSpinner/>
+
+  if (isLoading) {
+    return <LoadingSpinner />
   }
-  
+
   return (
     <div>
       <div className={styles.content}>
